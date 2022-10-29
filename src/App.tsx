@@ -10,9 +10,10 @@ import { IProduct } from "./models";
 
 function App() {
   const { loading, error, products, addProduct } = useProducts();
-  const [modal, setMmodal] = useState(true)
+  const [modal, setModal] = useState(false)
+
   const createHandler = (product:IProduct) =>{
-    setMmodal(false)
+    setModal(false)
     addProduct(product)
   }
 
@@ -22,11 +23,16 @@ function App() {
       {error && <ErrorMessage error={error}/>}
       {products.map((product) => (<Product product={product} key={product.id} />))}
 
-      {modal && <Modal title="Create new product">
-        <CreateProduct onCreate={createHandler}/>
+      {modal && <Modal title="Create new product" onClose={()=> setModal(false)}>
+        <CreateProduct onCreate={createHandler}  />
       </Modal>}
       {/* <Product product={ products[0]}/>
       <Product product={ products[1]}/> */}
+
+      <button className="fixed bottom-5 bg-red-700 rounded-full py-2 px-4 text-white text-2xl right-5"
+      onClick={()=>setModal(true)}>
+        +
+      </button>
     </div>
   );
 }
