@@ -13,6 +13,12 @@ export function useProducts() {
 
 
 
+  function addProduct(product:IProduct){
+    setProducts(prev=>[...prev, product])
+  }
+
+
+
 //Asynch fetch /Get data 
  async function fetchProducts() {
   try {
@@ -34,6 +40,6 @@ export function useProducts() {
     fetchProducts();
   }, [])
 
-  return {products, error, loading}
+  return {products, error, loading, addProduct}
 
 }
