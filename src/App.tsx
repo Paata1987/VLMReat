@@ -1,16 +1,14 @@
-
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import { AboutPages } from "./pages/abouPage";
+import { AboutPages } from "./pages/AboutPages";
 import { ProductsPage } from "./pages/Products";
 
 function App() {
-  return(
+  return (
     <Routes>
-      < Route path="/" element={<ProductsPage/>} />
-      < Route path="/" element={<AboutPages/>} />
+      <Route path="/" element={<ProductsPage />} />
+      <Route path="/about" element={<AboutPages />} />
     </Routes>
-  )
+  );
 }
 
 export default App;

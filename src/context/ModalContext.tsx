@@ -1,27 +1,26 @@
 import React, { createContext, useState } from "react";
 
 interface IModalContext {
-    modal: boolean
-    open:  () => void
-    close: () => void
+  modal: boolean;
+  open: () => void;
+  close: () => void;
 }
 
-export const ModalConterxt =  createContext<IModalContext>({
-    modal: false,
-    open: () => {},
-    close: () => {}
-})
+export const ModalConterxt = createContext<IModalContext>({
+  modal: false,
+  open: () => {},
+  close: () => {},
+});
 
+export const ModalState = ({ children }: { children: React.ReactNode }) => {
+  const [modal, setModal] = useState(false);
 
-export const  ModalState = ({ children }:{children: React.ReactNode}) => {
-    const [modal, setModal] = useState(false)
+  const open = () => setModal(true);
+  const close = () => setModal(false);
 
-    const open = () => setModal(true)
-    const close = () => setModal(false)
-
-    return(
-        <ModalConterxt.Provider value={{modal, open, close}}>
-            { children }
-        </ModalConterxt.Provider>
-    )
-}
+  return (
+    <ModalConterxt.Provider value={{ modal, open, close }}>
+      {children}
+    </ModalConterxt.Provider>
+  );
+};
